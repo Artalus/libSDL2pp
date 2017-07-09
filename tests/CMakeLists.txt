@@ -4,6 +4,8 @@ SET(CLI_TESTS
 	test_color_constexpr
 	test_error
 	test_eventutils
+	test_keystate
+	test_keyboardevents
 	test_optional
 	test_pointrect
 	test_pointrect_constexpr
