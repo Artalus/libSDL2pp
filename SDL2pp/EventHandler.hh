@@ -32,6 +32,18 @@ namespace SDL2pp {
 
 class SDL2PP_EXPORT EventHandler {
 protected:
+	virtual void OnKeyDown(SDL_KeyboardEvent event);
+	
+	virtual void OnKeyUp(SDL_KeyboardEvent event);
+	
+	virtual void OnMouseMotion(SDL_MouseMotionEvent event);
+	
+	virtual void OnMouseButtonDown(SDL_MouseButtonEvent event);
+	
+	virtual void OnMouseButtonUp(SDL_MouseButtonEvent event);
+	
+	virtual void OnMouseWheel(SDL_MouseWheelEvent event);
+
 	virtual void OnUnkownEvent(SDL_Event event);
 	
 public:

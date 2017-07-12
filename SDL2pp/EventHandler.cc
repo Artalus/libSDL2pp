@@ -25,10 +25,24 @@ using namespace std;
 
 namespace SDL2pp {
 
+void EventHandler::OnKeyDown(SDL_KeyboardEvent) { }
+
+void EventHandler::OnKeyUp(SDL_KeyboardEvent) { }
+
+void EventHandler::OnMouseMotion(SDL_MouseMotionEvent) { }
+
+void EventHandler::OnMouseButtonDown(SDL_MouseButtonEvent) { }
+
+void EventHandler::OnMouseButtonUp(SDL_MouseButtonEvent) { }
+
+void EventHandler::OnMouseWheel(SDL_MouseWheelEvent) { }
+
 void EventHandler::OnUnkownEvent(SDL_Event) { }
 
 bool EventHandler::PollOneEvent() {
-	static SDL_Event event; // Static to prevent re-instantiation for every call
+	// Static to prevent re-instantiation for every call
+	// the actual value shouldn't matter
+	static SDL_Event event;
 	return PollOneEvent(event);
 }
 
@@ -37,11 +51,13 @@ bool EventHandler::PollOneEvent(SDL_Event& event) {
 		return false;
 	}
 	
-	switch (event.type) {
-		default:
-			OnUnkownEvent(event);
-			break;
-	}
+	if (SDL_KEYDOWN == event.type) { OnKeyDown(event.key); }
+	else if (SDL_KEYUP == event.type) { OnKeyUp(event.key); }
+	else if (SDL_MOUSEMOTION == event.type) { OnMouseMotion(event.motion); }
+	else if (SDL_MOUSEBUTTONDOWN == event.type) { OnMouseButtonUp(event.button); }
+	else if (SDL_MOUSEBUTTONUP == event.type) { OnMouseButtonUp(event.button); }
+	else if (SDL_MOUSEWHEEL == event.type) { OnMouseWheel(event.wheel); }
+	else { OnUnkownEvent(event); }
 	
 	return true;
 }
