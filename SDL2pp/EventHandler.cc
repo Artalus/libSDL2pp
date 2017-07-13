@@ -39,6 +39,16 @@ void EventHandler::OnMouseWheel(SDL_MouseWheelEvent) { }
 
 void EventHandler::OnUnkownEvent(SDL_Event) { }
 
+void EventHandler::HandleEvent(SDL_Event event) {
+	if (SDL_KEYDOWN == event.type) { OnKeyDown(event.key); }
+	else if (SDL_KEYUP == event.type) { OnKeyUp(event.key); }
+	else if (SDL_MOUSEMOTION == event.type) { OnMouseMotion(event.motion); }
+	else if (SDL_MOUSEBUTTONDOWN == event.type) { OnMouseButtonUp(event.button); }
+	else if (SDL_MOUSEBUTTONUP == event.type) { OnMouseButtonUp(event.button); }
+	else if (SDL_MOUSEWHEEL == event.type) { OnMouseWheel(event.wheel); }
+	else { OnUnkownEvent(event); }
+}
+
 bool EventHandler::PollOneEvent() {
 	// Static to prevent re-instantiation for every call
 	// the actual value shouldn't matter
@@ -51,14 +61,7 @@ bool EventHandler::PollOneEvent(SDL_Event& event) {
 		return false;
 	}
 	
-	if (SDL_KEYDOWN == event.type) { OnKeyDown(event.key); }
-	else if (SDL_KEYUP == event.type) { OnKeyUp(event.key); }
-	else if (SDL_MOUSEMOTION == event.type) { OnMouseMotion(event.motion); }
-	else if (SDL_MOUSEBUTTONDOWN == event.type) { OnMouseButtonUp(event.button); }
-	else if (SDL_MOUSEBUTTONUP == event.type) { OnMouseButtonUp(event.button); }
-	else if (SDL_MOUSEWHEEL == event.type) { OnMouseWheel(event.wheel); }
-	else { OnUnkownEvent(event); }
-	
+	HandleEvent(event);
 	return true;
 }
 
