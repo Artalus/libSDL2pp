@@ -47,8 +47,6 @@ protected:
 	virtual void OnMouseButtonUp(SDL_MouseButtonEvent event);
 	
 	virtual void OnMouseWheel(SDL_MouseWheelEvent event);
-
-	virtual void OnUnkownEvent(SDL_Event event);
 	
 public:
 	Optional<SDL_Event> PollOneEvent();

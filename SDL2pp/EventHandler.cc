@@ -37,8 +37,6 @@ void EventHandler::OnMouseButtonUp(SDL_MouseButtonEvent) { }
 
 void EventHandler::OnMouseWheel(SDL_MouseWheelEvent) { }
 
-void EventHandler::OnUnkownEvent(SDL_Event) { }
-
 void EventHandler::HandleEvent(SDL_Event event) {
 	if (SDL_KEYDOWN == event.type) { OnKeyDown(event.key); }
 	else if (SDL_KEYUP == event.type) { OnKeyUp(event.key); }
@@ -46,7 +44,6 @@ void EventHandler::HandleEvent(SDL_Event event) {
 	else if (SDL_MOUSEBUTTONDOWN == event.type) { OnMouseButtonUp(event.button); }
 	else if (SDL_MOUSEBUTTONUP == event.type) { OnMouseButtonUp(event.button); }
 	else if (SDL_MOUSEWHEEL == event.type) { OnMouseWheel(event.wheel); }
-	else { OnUnkownEvent(event); }
 }
 
 Optional<SDL_Event> EventHandler::PollOneEvent() {

@@ -9,24 +9,13 @@
 
 using namespace SDL2pp;
 
-class TestEventHandler : public EventHandler {
-	int unkownEvent_ = 0;
-	
-	void OnUnkownEvent(SDL_Event) override {
-		unkownEvent_++;
-	}
-	
-public:
-	int GetUnkownEvent() const { return unkownEvent_; }
-};
-
 // For the event types event type
 constexpr Uint32 UNKOWN_EVENT = SDL_LASTEVENT - 1;
 
 BEGIN_TEST(int, char*[])
 	// Test no event captured
 	{
-		TestEventHandler eventHandler;
+		EventHandler eventHandler;
 		
 		EXPECT_EQUAL((bool)eventHandler.PollOneEvent(), false);
 		EXPECT_EQUAL(eventHandler.PollAllEvents().empty(), true);
@@ -39,10 +28,9 @@ BEGIN_TEST(int, char*[])
 		event.common.timestamp = static_cast<int>((intptr_t)&event); // Random value
 		SDL_PushEvent(&event);
 		
-		TestEventHandler eventHandler;
+		EventHandler eventHandler;
 		auto polledEvent = eventHandler.PollOneEvent();
 		EXPECT_EQUAL((bool)polledEvent, true);
-		EXPECT_EQUAL(eventHandler.GetUnkownEvent(), 1);
 		
 		EXPECT_EQUAL(polledEvent->type, event.type);
 		EXPECT_EQUAL(polledEvent->common.timestamp, event.common.timestamp);
@@ -58,10 +46,9 @@ BEGIN_TEST(int, char*[])
 		event.common.timestamp = static_cast<int>((intptr_t)&event); // Random value
 		SDL_PushEvent(&event);
 		
-		TestEventHandler eventHandler;
+		EventHandler eventHandler;
 		auto polledEvents = eventHandler.PollAllEvents();
 		EXPECT_EQUAL(polledEvents.size(), static_cast<size_t>(1));
-		EXPECT_EQUAL(eventHandler.GetUnkownEvent(), 1);
 		
 		EXPECT_EQUAL(polledEvents[0].type, event.type);
 		EXPECT_EQUAL(polledEvents[0].common.timestamp, event.common.timestamp);
@@ -80,14 +67,13 @@ BEGIN_TEST(int, char*[])
 			SDL_PushEvent(&event);
 		}
 		
-		TestEventHandler eventHandler;
+		EventHandler eventHandler;
 		for (auto event : events) {
 			auto polledEvent = eventHandler.PollOneEvent();
 			EXPECT_EQUAL((bool)polledEvent, true);
 			EXPECT_EQUAL(polledEvent->type, event.type);
 			EXPECT_EQUAL(polledEvent->user.code, event.user.code);
 		}
-		EXPECT_EQUAL(eventHandler.GetUnkownEvent(), eventCount);
 		
 		EXPECT_EQUAL((bool)eventHandler.PollOneEvent(), false);
 		EXPECT_EQUAL(eventHandler.PollAllEvents().empty(), true);
@@ -103,7 +89,7 @@ BEGIN_TEST(int, char*[])
 			SDL_PushEvent(&event);
 		}
 		
-		TestEventHandler eventHandler;
+		EventHandler eventHandler;
 		auto polledEvents = eventHandler.PollAllEvents();
 		EXPECT_EQUAL(polledEvents.size(), static_cast<size_t>(eventCount));
 		for (int n = 0; n < eventCount; ++n) {
