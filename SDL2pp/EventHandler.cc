@@ -59,22 +59,14 @@ Optional<SDL_Event> EventHandler::PollOneEvent() {
 	}
 }
 
-bool EventHandler::PollOneEvent(SDL_Event& event) {
-	if (!SDL_PollEvent(&event)) {
-		return false;
-	}
-	
-	HandleEvent(event);
-	return true;
-}
-
 vector<SDL_Event> EventHandler::PollAllEvents() {
 	vector<SDL_Event> events;
 	
-	SDL_Event event;
-	while (PollOneEvent(event)) {
-		events.push_back(event);
-	}
+	// One liner to PollOneEvent and add it to the vector
+	// until there is no more events to poll
+	for (Optional<SDL_Event> event;
+		(event = PollOneEvent());
+		events.push_back(*event));
 	
 	return events;
 }

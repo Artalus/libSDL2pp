@@ -53,8 +53,6 @@ protected:
 public:
 	Optional<SDL_Event> PollOneEvent();
 	
-	bool PollOneEvent(SDL_Event& event);
-	
 	std::vector<SDL_Event> PollAllEvents();
 };
 
