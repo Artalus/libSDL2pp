@@ -25,9 +25,19 @@ using namespace std;
 
 namespace SDL2pp {
 
+void EventHandler::OnQuit(SDL_QuitEvent) { }
+
+void EventHandler::OnWindowEvent(SDL_WindowEvent) { }
+
+void EventHandler::OnWindowManagerEvent(SDL_SysWMEvent) { }
+
 void EventHandler::OnKeyDown(SDL_KeyboardEvent) { }
 
 void EventHandler::OnKeyUp(SDL_KeyboardEvent) { }
+
+void EventHandler::OnTextEditing(SDL_TextEditingEvent) { }
+
+void EventHandler::OnTextInput(SDL_TextInputEvent) { }
 
 void EventHandler::OnMouseMotion(SDL_MouseMotionEvent) { }
 
@@ -37,13 +47,60 @@ void EventHandler::OnMouseButtonUp(SDL_MouseButtonEvent) { }
 
 void EventHandler::OnMouseWheel(SDL_MouseWheelEvent) { }
 
+void EventHandler::OnJoyAxisMotion(SDL_JoyAxisEvent) { }
+
+void EventHandler::OnJoyBallMotion(SDL_JoyBallEvent) { }
+
+void EventHandler::OnJoyHatMotion(SDL_JoyHatEvent) { }
+
+void EventHandler::OnJoyButtonDown(SDL_JoyButtonEvent) { }
+
+void EventHandler::OnJoyButtonUp(SDL_JoyButtonEvent) { }
+
+void EventHandler::OnJoyDeviceAdded(SDL_JoyDeviceEvent) { }
+
+void EventHandler::OnJoyDeviceRemoved(SDL_JoyDeviceEvent) { }
+
+void EventHandler::OnControllerAxisMotion(SDL_ControllerAxisEvent) { }
+
+void EventHandler::OnControllerButtonDown(SDL_ControllerButtonEvent) { }
+
+void EventHandler::OnControllerButtonUp(SDL_ControllerButtonEvent) { }
+
+void EventHandler::OnControllerDeviceAdded(SDL_ControllerDeviceEvent) { }
+
+void EventHandler::OnControllerDeviceRemoved(SDL_ControllerDeviceEvent) { }
+
+void EventHandler::OnControllerDeviceRemapped(SDL_ControllerDeviceEvent) { }
+
+void EventHandler::OnUserEvent(SDL_UserEvent) { }
+
 void EventHandler::HandleEvent(SDL_Event event) {
-	if (SDL_KEYDOWN == event.type) { OnKeyDown(event.key); }
+	if (SDL_QUIT == event.type) { OnQuit(event.quit); }
+	else if (SDL_WINDOWEVENT == event.type) { OnWindowEvent(event.window); }
+	else if (SDL_SYSWMEVENT == event.type) { OnWindowManagerEvent(event.syswm); }
+	else if (SDL_KEYDOWN == event.type) { OnKeyDown(event.key); }
 	else if (SDL_KEYUP == event.type) { OnKeyUp(event.key); }
+	else if (SDL_TEXTEDITING == event.type) { OnTextInput(event.text); }
+	else if (SDL_TEXTINPUT == event.type) { OnTextEditing(event.edit); }
 	else if (SDL_MOUSEMOTION == event.type) { OnMouseMotion(event.motion); }
-	else if (SDL_MOUSEBUTTONDOWN == event.type) { OnMouseButtonUp(event.button); }
+	else if (SDL_MOUSEBUTTONDOWN == event.type) { OnMouseButtonDown(event.button); }
 	else if (SDL_MOUSEBUTTONUP == event.type) { OnMouseButtonUp(event.button); }
 	else if (SDL_MOUSEWHEEL == event.type) { OnMouseWheel(event.wheel); }
+	else if (SDL_JOYAXISMOTION == event.type) { OnJoyAxisMotion(event.jaxis); }
+	else if (SDL_JOYBALLMOTION == event.type) { OnJoyBallMotion(event.jball); }
+	else if (SDL_JOYHATMOTION == event.type) { OnJoyHatMotion(event.jhat); }
+	else if (SDL_JOYBUTTONDOWN == event.type) { OnJoyButtonDown(event.jbutton); }
+	else if (SDL_JOYBUTTONUP == event.type) { OnJoyButtonUp(event.jbutton); }
+	else if (SDL_JOYDEVICEADDED == event.type) { OnJoyDeviceAdded(event.jdevice); }
+	else if (SDL_JOYDEVICEREMOVED == event.type) { OnJoyDeviceRemoved(event.jdevice); }
+	else if (SDL_CONTROLLERAXISMOTION == event.type) { OnControllerAxisMotion(event.caxis); }
+	else if (SDL_CONTROLLERBUTTONDOWN == event.type) { OnControllerButtonDown(event.cbutton); }
+	else if (SDL_CONTROLLERBUTTONUP == event.type) { OnControllerButtonUp(event.cbutton); }
+	else if (SDL_CONTROLLERDEVICEADDED == event.type) { OnControllerDeviceAdded(event.cdevice); }
+	else if (SDL_CONTROLLERDEVICEREMOVED == event.type) { OnControllerDeviceRemoved(event.cdevice); }
+	else if (SDL_CONTROLLERDEVICEREMAPPED == event.type) { OnControllerDeviceRemapped(event.cdevice); }
+	else if (SDL_USEREVENT == event.type) { OnUserEvent(event.user); }
 }
 
 Optional<SDL_Event> EventHandler::PollOneEvent() {

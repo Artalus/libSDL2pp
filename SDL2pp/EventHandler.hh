@@ -36,9 +36,19 @@ private:
 	void HandleEvent(SDL_Event event);
 
 protected:
+	virtual void OnQuit(SDL_QuitEvent event);
+	
+	virtual void OnWindowEvent(SDL_WindowEvent event);
+	
+	virtual void OnWindowManagerEvent(SDL_SysWMEvent event);
+
 	virtual void OnKeyDown(SDL_KeyboardEvent event);
 	
 	virtual void OnKeyUp(SDL_KeyboardEvent event);
+	
+	virtual void OnTextEditing(SDL_TextEditingEvent event);
+	
+	virtual void OnTextInput(SDL_TextInputEvent event);
 	
 	virtual void OnMouseMotion(SDL_MouseMotionEvent event);
 	
@@ -47,6 +57,34 @@ protected:
 	virtual void OnMouseButtonUp(SDL_MouseButtonEvent event);
 	
 	virtual void OnMouseWheel(SDL_MouseWheelEvent event);
+	
+	virtual void OnJoyAxisMotion(SDL_JoyAxisEvent event);
+	
+	virtual void OnJoyBallMotion(SDL_JoyBallEvent event);
+	
+	virtual void OnJoyHatMotion(SDL_JoyHatEvent event);
+	
+	virtual void OnJoyButtonDown(SDL_JoyButtonEvent event);
+	
+	virtual void OnJoyButtonUp(SDL_JoyButtonEvent event);
+	
+	virtual void OnJoyDeviceAdded(SDL_JoyDeviceEvent event);
+	
+	virtual void OnJoyDeviceRemoved(SDL_JoyDeviceEvent event);
+	
+	virtual void OnControllerAxisMotion(SDL_ControllerAxisEvent event);
+	
+	virtual void OnControllerButtonDown(SDL_ControllerButtonEvent event);
+	
+	virtual void OnControllerButtonUp(SDL_ControllerButtonEvent event);
+	
+	virtual void OnControllerDeviceAdded(SDL_ControllerDeviceEvent event);
+	
+	virtual void OnControllerDeviceRemoved(SDL_ControllerDeviceEvent event);
+	
+	virtual void OnControllerDeviceRemapped(SDL_ControllerDeviceEvent event);
+	
+	virtual void OnUserEvent(SDL_UserEvent event);
 	
 public:
 	Optional<SDL_Event> PollOneEvent();
