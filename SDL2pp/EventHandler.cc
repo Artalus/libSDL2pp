@@ -49,11 +49,14 @@ void EventHandler::HandleEvent(SDL_Event event) {
 	else { OnUnkownEvent(event); }
 }
 
-bool EventHandler::PollOneEvent() {
-	// Static to prevent re-instantiation for every call
-	// the actual value shouldn't matter
-	static SDL_Event event;
-	return PollOneEvent(event);
+Optional<SDL_Event> EventHandler::PollOneEvent() {
+	SDL_Event event;
+	if (SDL_PollEvent(&event)) {
+		HandleEvent(event);
+		return event;
+	} else {
+		return Optional<SDL_Event>();
+	}
 }
 
 bool EventHandler::PollOneEvent(SDL_Event& event) {

@@ -27,7 +27,7 @@ BEGIN_TEST(int, char*[])
 	{
 		TestEventHandler eventHandler;
 		
-		EXPECT_EQUAL(eventHandler.PollOneEvent(), false);
+		EXPECT_TRUE(!eventHandler.PollOneEvent());
 		EXPECT_TRUE(eventHandler.PollAllEvents().empty());
 	}
 
@@ -39,14 +39,14 @@ BEGIN_TEST(int, char*[])
 		SDL_PushEvent(&event);
 		
 		TestEventHandler eventHandler;
-		SDL_Event polledEvent;
-		EXPECT_EQUAL(eventHandler.PollOneEvent(polledEvent), true);
+		auto polledEvent = eventHandler.PollOneEvent();
+		EXPECT_EQUAL((bool)polledEvent, true);
 		EXPECT_EQUAL(eventHandler.GetUnkownEvent(), 1);
 		
-		EXPECT_EQUAL(polledEvent.type, event.type);
-		EXPECT_EQUAL(polledEvent.common.timestamp, event.common.timestamp);
+		EXPECT_EQUAL(polledEvent->type, event.type);
+		EXPECT_EQUAL(polledEvent->common.timestamp, event.common.timestamp);
 		
-		EXPECT_EQUAL(eventHandler.PollOneEvent(), false);
+		EXPECT_TRUE(!eventHandler.PollOneEvent());
 		EXPECT_EQUAL(eventHandler.PollAllEvents().empty(), true);
 	}
 
@@ -64,7 +64,7 @@ BEGIN_TEST(int, char*[])
 		EXPECT_EQUAL(polledEvents[0].common.timestamp, event.common.timestamp);
 		EXPECT_EQUAL(eventHandler.GetUnkownEvent(), 1);
 		
-		EXPECT_EQUAL(eventHandler.PollOneEvent(), false);
+		EXPECT_TRUE(!eventHandler.PollOneEvent());
 		EXPECT_EQUAL(eventHandler.PollAllEvents().empty(), true);
 	}
 
@@ -87,7 +87,7 @@ BEGIN_TEST(int, char*[])
 		}
 		EXPECT_EQUAL(eventHandler.GetUnkownEvent(), eventCount);
 		
-		EXPECT_EQUAL(eventHandler.PollOneEvent(), false);
+		EXPECT_TRUE(!eventHandler.PollOneEvent());
 		EXPECT_EQUAL(eventHandler.PollAllEvents().empty(), true);
 	}
 
@@ -110,7 +110,7 @@ BEGIN_TEST(int, char*[])
 		}
 		EXPECT_EQUAL(eventHandler.GetUnkownEvent(), eventCount);
 		
-		EXPECT_EQUAL(eventHandler.PollOneEvent(), false);
+		EXPECT_TRUE(!eventHandler.PollOneEvent());
 		EXPECT_EQUAL(eventHandler.PollAllEvents().empty(), true);
 	}
 END_TEST()

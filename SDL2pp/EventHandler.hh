@@ -25,6 +25,7 @@
 #include <SDL_events.h>
 
 #include <SDL2pp/Export.hh>
+#include <SDL2pp/Optional.hh>
 
 #include <vector>
 
@@ -50,7 +51,7 @@ protected:
 	virtual void OnUnkownEvent(SDL_Event event);
 	
 public:
-	bool PollOneEvent();
+	Optional<SDL_Event> PollOneEvent();
 	
 	bool PollOneEvent(SDL_Event& event);
 	
