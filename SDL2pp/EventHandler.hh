@@ -84,10 +84,11 @@ protected:
 	virtual void OnUserEvent(const SDL_UserEvent& event);
 	
 public:
-	Optional<SDL_Event> PollOneEvent();
 	void HandleEvent(const SDL_Event& event);
 	
-	std::vector<SDL_Event> PollAllEvents();
+	bool PollOneEvent();
+	
+	bool PollAllEvents();
 };
 
 }
