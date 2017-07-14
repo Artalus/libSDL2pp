@@ -32,9 +32,6 @@
 namespace SDL2pp {
 
 class SDL2PP_EXPORT EventHandler {
-private:
-	void HandleEvent(SDL_Event event);
-
 protected:
 	virtual void OnQuit(const SDL_QuitEvent& event);
 	
@@ -88,6 +85,7 @@ protected:
 	
 public:
 	Optional<SDL_Event> PollOneEvent();
+	void HandleEvent(const SDL_Event& event);
 	
 	std::vector<SDL_Event> PollAllEvents();
 };
