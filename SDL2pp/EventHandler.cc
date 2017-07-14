@@ -75,32 +75,84 @@ void EventHandler::OnControllerDeviceRemapped(const SDL_ControllerDeviceEvent&) 
 
 void EventHandler::OnUserEvent(const SDL_UserEvent&) { }
 
-void EventHandler::HandleEvent(SDL_Event event) {
-	if (SDL_QUIT == event.type) { OnQuit(event.quit); }
-	else if (SDL_WINDOWEVENT == event.type) { OnWindowEvent(event.window); }
-	else if (SDL_SYSWMEVENT == event.type) { OnWindowManagerEvent(event.syswm); }
-	else if (SDL_KEYDOWN == event.type) { OnKeyDown(event.key); }
-	else if (SDL_KEYUP == event.type) { OnKeyUp(event.key); }
-	else if (SDL_TEXTEDITING == event.type) { OnTextInput(event.text); }
-	else if (SDL_TEXTINPUT == event.type) { OnTextEditing(event.edit); }
-	else if (SDL_MOUSEMOTION == event.type) { OnMouseMotion(event.motion); }
-	else if (SDL_MOUSEBUTTONDOWN == event.type) { OnMouseButtonDown(event.button); }
-	else if (SDL_MOUSEBUTTONUP == event.type) { OnMouseButtonUp(event.button); }
-	else if (SDL_MOUSEWHEEL == event.type) { OnMouseWheel(event.wheel); }
-	else if (SDL_JOYAXISMOTION == event.type) { OnJoyAxisMotion(event.jaxis); }
-	else if (SDL_JOYBALLMOTION == event.type) { OnJoyBallMotion(event.jball); }
-	else if (SDL_JOYHATMOTION == event.type) { OnJoyHatMotion(event.jhat); }
-	else if (SDL_JOYBUTTONDOWN == event.type) { OnJoyButtonDown(event.jbutton); }
-	else if (SDL_JOYBUTTONUP == event.type) { OnJoyButtonUp(event.jbutton); }
-	else if (SDL_JOYDEVICEADDED == event.type) { OnJoyDeviceAdded(event.jdevice); }
-	else if (SDL_JOYDEVICEREMOVED == event.type) { OnJoyDeviceRemoved(event.jdevice); }
-	else if (SDL_CONTROLLERAXISMOTION == event.type) { OnControllerAxisMotion(event.caxis); }
-	else if (SDL_CONTROLLERBUTTONDOWN == event.type) { OnControllerButtonDown(event.cbutton); }
-	else if (SDL_CONTROLLERBUTTONUP == event.type) { OnControllerButtonUp(event.cbutton); }
-	else if (SDL_CONTROLLERDEVICEADDED == event.type) { OnControllerDeviceAdded(event.cdevice); }
-	else if (SDL_CONTROLLERDEVICEREMOVED == event.type) { OnControllerDeviceRemoved(event.cdevice); }
-	else if (SDL_CONTROLLERDEVICEREMAPPED == event.type) { OnControllerDeviceRemapped(event.cdevice); }
-	else if (SDL_USEREVENT == event.type) { OnUserEvent(event.user); }
+void EventHandler::HandleEvent(const SDL_Event& event) {
+	switch (event.type) {
+	case SDL_QUIT:
+		OnQuit(event.quit);
+		break;
+	case SDL_WINDOWEVENT:
+		OnWindowEvent(event.window);
+		break;
+	case SDL_SYSWMEVENT:
+		OnWindowManagerEvent(event.syswm);
+		break;
+	case SDL_KEYDOWN:
+		OnKeyDown(event.key);
+		break;
+	case SDL_KEYUP:
+		OnKeyUp(event.key);
+		break;
+	case SDL_TEXTEDITING:
+		OnTextInput(event.text);
+		break;
+	case SDL_TEXTINPUT:
+		OnTextEditing(event.edit);
+		break;
+	case SDL_MOUSEMOTION:
+		OnMouseMotion(event.motion);
+		break;
+	case SDL_MOUSEBUTTONDOWN:
+		OnMouseButtonDown(event.button);
+		break;
+	case SDL_MOUSEBUTTONUP:
+		OnMouseButtonUp(event.button);
+		break;
+	case SDL_MOUSEWHEEL:
+		OnMouseWheel(event.wheel);
+		break;
+	case SDL_JOYAXISMOTION:
+		OnJoyAxisMotion(event.jaxis);
+		break;
+	case SDL_JOYBALLMOTION:
+		OnJoyBallMotion(event.jball);
+		break;
+	case SDL_JOYHATMOTION:
+		OnJoyHatMotion(event.jhat);
+		break;
+	case SDL_JOYBUTTONDOWN:
+		OnJoyButtonDown(event.jbutton);
+		break;
+	case SDL_JOYBUTTONUP:
+		OnJoyButtonUp(event.jbutton);
+		break;
+	case SDL_JOYDEVICEADDED:
+		OnJoyDeviceAdded(event.jdevice);
+		break;
+	case SDL_JOYDEVICEREMOVED:
+		OnJoyDeviceRemoved(event.jdevice);
+		break;
+	case SDL_CONTROLLERAXISMOTION:
+		OnControllerAxisMotion(event.caxis);
+		break;
+	case SDL_CONTROLLERBUTTONDOWN:
+		OnControllerButtonDown(event.cbutton);
+		break;
+	case SDL_CONTROLLERBUTTONUP:
+		OnControllerButtonUp(event.cbutton);
+		break;
+	case SDL_CONTROLLERDEVICEADDED:
+		OnControllerDeviceAdded(event.cdevice);
+		break;
+	case SDL_CONTROLLERDEVICEREMOVED:
+		OnControllerDeviceRemoved(event.cdevice);
+		break;
+	case SDL_CONTROLLERDEVICEREMAPPED:
+		OnControllerDeviceRemapped(event.cdevice);
+		break;
+	case SDL_USEREVENT:
+		OnUserEvent(event.user);
+		break;
+	}
 }
 
 bool EventHandler::PollOneEvent() {
