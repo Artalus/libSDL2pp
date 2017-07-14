@@ -36,55 +36,55 @@ private:
 	void HandleEvent(SDL_Event event);
 
 protected:
-	virtual void OnQuit(SDL_QuitEvent event);
+	virtual void OnQuit(const SDL_QuitEvent& event);
 	
-	virtual void OnWindowEvent(SDL_WindowEvent event);
+	virtual void OnWindowEvent(const SDL_WindowEvent& event);
 	
-	virtual void OnWindowManagerEvent(SDL_SysWMEvent event);
+	virtual void OnWindowManagerEvent(const SDL_SysWMEvent& event);
 
-	virtual void OnKeyDown(SDL_KeyboardEvent event);
+	virtual void OnKeyDown(const SDL_KeyboardEvent& event);
 	
-	virtual void OnKeyUp(SDL_KeyboardEvent event);
+	virtual void OnKeyUp(const SDL_KeyboardEvent& event);
 	
-	virtual void OnTextEditing(SDL_TextEditingEvent event);
+	virtual void OnTextEditing(const SDL_TextEditingEvent& event);
 	
-	virtual void OnTextInput(SDL_TextInputEvent event);
+	virtual void OnTextInput(const SDL_TextInputEvent& event);
 	
-	virtual void OnMouseMotion(SDL_MouseMotionEvent event);
+	virtual void OnMouseMotion(const SDL_MouseMotionEvent& event);
 	
-	virtual void OnMouseButtonDown(SDL_MouseButtonEvent event);
+	virtual void OnMouseButtonDown(const SDL_MouseButtonEvent& event);
 	
-	virtual void OnMouseButtonUp(SDL_MouseButtonEvent event);
+	virtual void OnMouseButtonUp(const SDL_MouseButtonEvent& event);
 	
-	virtual void OnMouseWheel(SDL_MouseWheelEvent event);
+	virtual void OnMouseWheel(const SDL_MouseWheelEvent& event);
 	
-	virtual void OnJoyAxisMotion(SDL_JoyAxisEvent event);
+	virtual void OnJoyAxisMotion(const SDL_JoyAxisEvent& event);
 	
-	virtual void OnJoyBallMotion(SDL_JoyBallEvent event);
+	virtual void OnJoyBallMotion(const SDL_JoyBallEvent& event);
 	
-	virtual void OnJoyHatMotion(SDL_JoyHatEvent event);
+	virtual void OnJoyHatMotion(const SDL_JoyHatEvent& event);
 	
-	virtual void OnJoyButtonDown(SDL_JoyButtonEvent event);
+	virtual void OnJoyButtonDown(const SDL_JoyButtonEvent& event);
 	
-	virtual void OnJoyButtonUp(SDL_JoyButtonEvent event);
+	virtual void OnJoyButtonUp(const SDL_JoyButtonEvent& event);
 	
-	virtual void OnJoyDeviceAdded(SDL_JoyDeviceEvent event);
+	virtual void OnJoyDeviceAdded(const SDL_JoyDeviceEvent& event);
 	
-	virtual void OnJoyDeviceRemoved(SDL_JoyDeviceEvent event);
+	virtual void OnJoyDeviceRemoved(const SDL_JoyDeviceEvent& event);
 	
-	virtual void OnControllerAxisMotion(SDL_ControllerAxisEvent event);
+	virtual void OnControllerAxisMotion(const SDL_ControllerAxisEvent& event);
 	
-	virtual void OnControllerButtonDown(SDL_ControllerButtonEvent event);
+	virtual void OnControllerButtonDown(const SDL_ControllerButtonEvent& event);
 	
-	virtual void OnControllerButtonUp(SDL_ControllerButtonEvent event);
+	virtual void OnControllerButtonUp(const SDL_ControllerButtonEvent& event);
 	
-	virtual void OnControllerDeviceAdded(SDL_ControllerDeviceEvent event);
+	virtual void OnControllerDeviceAdded(const SDL_ControllerDeviceEvent& event);
 	
-	virtual void OnControllerDeviceRemoved(SDL_ControllerDeviceEvent event);
+	virtual void OnControllerDeviceRemoved(const SDL_ControllerDeviceEvent& event);
 	
-	virtual void OnControllerDeviceRemapped(SDL_ControllerDeviceEvent event);
+	virtual void OnControllerDeviceRemapped(const SDL_ControllerDeviceEvent& event);
 	
-	virtual void OnUserEvent(SDL_UserEvent event);
+	virtual void OnUserEvent(const SDL_UserEvent& event);
 	
 public:
 	Optional<SDL_Event> PollOneEvent();

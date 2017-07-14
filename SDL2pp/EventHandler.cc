@@ -25,55 +25,55 @@ using namespace std;
 
 namespace SDL2pp {
 
-void EventHandler::OnQuit(SDL_QuitEvent) { }
+void EventHandler::OnQuit(const SDL_QuitEvent&) { }
 
-void EventHandler::OnWindowEvent(SDL_WindowEvent) { }
+void EventHandler::OnWindowEvent(const SDL_WindowEvent&) { }
 
-void EventHandler::OnWindowManagerEvent(SDL_SysWMEvent) { }
+void EventHandler::OnWindowManagerEvent(const SDL_SysWMEvent&) { }
 
-void EventHandler::OnKeyDown(SDL_KeyboardEvent) { }
+void EventHandler::OnKeyDown(const SDL_KeyboardEvent&) { }
 
-void EventHandler::OnKeyUp(SDL_KeyboardEvent) { }
+void EventHandler::OnKeyUp(const SDL_KeyboardEvent&) { }
 
-void EventHandler::OnTextEditing(SDL_TextEditingEvent) { }
+void EventHandler::OnTextEditing(const SDL_TextEditingEvent&) { }
 
-void EventHandler::OnTextInput(SDL_TextInputEvent) { }
+void EventHandler::OnTextInput(const SDL_TextInputEvent&) { }
 
-void EventHandler::OnMouseMotion(SDL_MouseMotionEvent) { }
+void EventHandler::OnMouseMotion(const SDL_MouseMotionEvent&) { }
 
-void EventHandler::OnMouseButtonDown(SDL_MouseButtonEvent) { }
+void EventHandler::OnMouseButtonDown(const SDL_MouseButtonEvent&) { }
 
-void EventHandler::OnMouseButtonUp(SDL_MouseButtonEvent) { }
+void EventHandler::OnMouseButtonUp(const SDL_MouseButtonEvent&) { }
 
-void EventHandler::OnMouseWheel(SDL_MouseWheelEvent) { }
+void EventHandler::OnMouseWheel(const SDL_MouseWheelEvent&) { }
 
-void EventHandler::OnJoyAxisMotion(SDL_JoyAxisEvent) { }
+void EventHandler::OnJoyAxisMotion(const SDL_JoyAxisEvent&) { }
 
-void EventHandler::OnJoyBallMotion(SDL_JoyBallEvent) { }
+void EventHandler::OnJoyBallMotion(const SDL_JoyBallEvent&) { }
 
-void EventHandler::OnJoyHatMotion(SDL_JoyHatEvent) { }
+void EventHandler::OnJoyHatMotion(const SDL_JoyHatEvent&) { }
 
-void EventHandler::OnJoyButtonDown(SDL_JoyButtonEvent) { }
+void EventHandler::OnJoyButtonDown(const SDL_JoyButtonEvent&) { }
 
-void EventHandler::OnJoyButtonUp(SDL_JoyButtonEvent) { }
+void EventHandler::OnJoyButtonUp(const SDL_JoyButtonEvent&) { }
 
-void EventHandler::OnJoyDeviceAdded(SDL_JoyDeviceEvent) { }
+void EventHandler::OnJoyDeviceAdded(const SDL_JoyDeviceEvent&) { }
 
-void EventHandler::OnJoyDeviceRemoved(SDL_JoyDeviceEvent) { }
+void EventHandler::OnJoyDeviceRemoved(const SDL_JoyDeviceEvent&) { }
 
-void EventHandler::OnControllerAxisMotion(SDL_ControllerAxisEvent) { }
+void EventHandler::OnControllerAxisMotion(const SDL_ControllerAxisEvent&) { }
 
-void EventHandler::OnControllerButtonDown(SDL_ControllerButtonEvent) { }
+void EventHandler::OnControllerButtonDown(const SDL_ControllerButtonEvent&) { }
 
-void EventHandler::OnControllerButtonUp(SDL_ControllerButtonEvent) { }
+void EventHandler::OnControllerButtonUp(const SDL_ControllerButtonEvent&) { }
 
-void EventHandler::OnControllerDeviceAdded(SDL_ControllerDeviceEvent) { }
+void EventHandler::OnControllerDeviceAdded(const SDL_ControllerDeviceEvent&) { }
 
-void EventHandler::OnControllerDeviceRemoved(SDL_ControllerDeviceEvent) { }
+void EventHandler::OnControllerDeviceRemoved(const SDL_ControllerDeviceEvent&) { }
 
-void EventHandler::OnControllerDeviceRemapped(SDL_ControllerDeviceEvent) { }
+void EventHandler::OnControllerDeviceRemapped(const SDL_ControllerDeviceEvent&) { }
 
-void EventHandler::OnUserEvent(SDL_UserEvent) { }
+void EventHandler::OnUserEvent(const SDL_UserEvent&) { }
 
 void EventHandler::HandleEvent(SDL_Event event) {
 	if (SDL_QUIT == event.type) { OnQuit(event.quit); }
