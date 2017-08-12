@@ -29,6 +29,9 @@
 
 namespace SDL2pp {
 namespace Event {
+	SDL2PP_EXPORT SDL_Event WaitEvent();
+	
+	SDL2PP_EXPORT Optional<SDL_Event> WaitEvent(int timeout);
 }
 }
 
